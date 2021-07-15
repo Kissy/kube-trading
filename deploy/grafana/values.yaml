@@ -1,0 +1,78 @@
+testFramework:
+  enabled: true
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  path: /
+  hosts:
+    - grafana.local
+
+## Configure grafana datasources
+## ref: http://docs.grafana.org/administration/provisioning/#datasources
+##
+datasources: {}
+#  datasources.yaml:
+#    apiVersion: 1
+#    datasources:
+#    - name: Prometheus
+#      type: prometheus
+#      url: http://prometheus-prometheus-server
+#      access: proxy
+#      isDefault: true
+#    - name: CloudWatch
+#        type: cloudwatch
+#        access: proxy
+#        uid: cloudwatch
+#        editable: false
+#        jsonData:
+#          authType: credentials
+#          defaultRegion: us-east-1
+
+## Configure notifiers
+## ref: http://docs.grafana.org/administration/provisioning/#alert-notification-channels
+##
+notifiers: {}
+#  notifiers.yaml:
+#    notifiers:
+#    - name: email-notifier
+#      type: email
+#      uid: email1
+#      # either:
+#      org_id: 1
+#      # or
+#      org_name: Main Org.
+#      is_default: true
+#      settings:
+#        addresses: an_email_address@example.com
+#    delete_notifiers:
+
+## Configure grafana dashboard providers
+## ref: http://docs.grafana.org/administration/provisioning/#dashboards
+##
+## `path` must be /var/lib/grafana/dashboards/<provider_name>
+##
+dashboardProviders: {}
+#  dashboardproviders.yaml:
+#    apiVersion: 1
+#    providers:
+#    - name: 'default'
+#      orgId: 1
+#      folder: ''
+#      type: file
+#      disableDeletion: false
+#      editable: true
+#      options:
+#        path: /var/lib/grafana/dashboards/default
+
+## Reference to external ConfigMap per provider. Use provider name as key and ConfigMap name as value.
+## A provider dashboards must be defined either by external ConfigMaps or in values.yaml, not in both.
+## ConfigMap data example:
+##
+## data:
+##   example-dashboard.json: |
+##     RAW_JSON
+##
+dashboardsConfigMaps: {}
+#  default: ""

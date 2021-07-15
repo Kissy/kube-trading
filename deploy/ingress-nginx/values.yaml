@@ -1,0 +1,16 @@
+controller:
+  hostPort:
+    enabled: true
+    ports:
+      http: 80
+      https: 443
+  nodeSelector:
+    ingress-ready: "true"
+  podAnnotations:
+    linkerd.io/inject: ingress
+  service:
+    type: NodePort
+  tolerations:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/master
+      operator: Equal

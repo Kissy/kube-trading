@@ -1,0 +1,6 @@
+# See https://github.com/influxdata/helm-charts/blob/master/charts/influxdb2/values.yaml
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hostname: influxdb.local
